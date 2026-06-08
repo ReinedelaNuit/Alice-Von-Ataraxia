@@ -42,21 +42,17 @@ function generateFood() {
 }
 
 function drawGame() {
-    const head = {
+    // Calculate new head position
+    let head = {
         x: snake[0].x + dx,
         y: snake[0].y + dy
     };
 
-    // Wall collision
-    if (
-        head.x < 0 ||
-        head.x >= tileCount ||
-        head.y < 0 ||
-        head.y >= tileCount
-    ) {
-        endGame();
-        return;
-    }
+    // Wrap around walls
+    if (head.x < 0) head.x = tileCount - 1;
+    if (head.x >= tileCount) head.x = 0;
+    if (head.y < 0) head.y = tileCount - 1;
+    if (head.y >= tileCount) head.y = 0;
 
     // Self collision
     for (const segment of snake) {
@@ -68,7 +64,7 @@ function drawGame() {
 
     snake.unshift(head);
 
-    // Food collision
+    // Eat food
     if (head.x === food.x && head.y === food.y) {
         score++;
         scoreElement.textContent = `Score: ${score}`;
