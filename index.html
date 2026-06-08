@@ -18,15 +18,15 @@
     </style>
 </head>
 <body>
+    <h1 id="message">Hello World!</h1>
     <button id="myButton">Click Me!</button>
-    <h1 id="message"></h1>
 
     <script>
         const button = document.getElementById('myButton');
         const message = document.getElementById('message');
 
         button.addEventListener('click', () => {
-            message.textContent = 'Hello World';
+            window.location.href = 'snake.html';
         });
     </script>
 </body>
